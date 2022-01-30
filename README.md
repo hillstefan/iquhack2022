@@ -21,6 +21,15 @@ by comparison of two hash-functions.
 The classical communication was implemented in python while the quantum information channels 
 were implemented with cQASM and run on the Quantum inspire platform.
 
+First of all, both Alice and Bob use the Quantum Inspire system to generate random numbers. This can be done by applying a Hadamard Gate on a qubit in 0 state
+and measuring the qubit in the z basis, which will give us a completely random result of either 0 or 1.
+Alternatively, A classical random number generator can be used. We offer both options that can be chosen depending on preferences of the user/availability of the quantum hardware.
+This random number generation is repeated several times to generate different bitstrings for the key and basis for each Alice and Bob.
+In our modified version of the BB84 protocol, both participants of the conversation encode a key which is sent to the other.
+This doubles the length of the output key, with only generating 4/3 as many random numbers.
+Since in a practical application photons would be exchanged, our
+"mirrored" version of BB84 does not increase the runtime significantly.
+With the algorithm, two private keys are generated and merged. 
 
 The resulting keys can be compared publicly using a quantum-safe hash function such as sha3-512.
 If they match, the key exchange was successful, if they do not match, an error occurred (most likely) in the quantum algorithm, so a re-run is necessary, which our code handles automatically, up to 10 tries.
