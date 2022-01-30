@@ -11,9 +11,9 @@ class Agent(abc.ABC):
         self._private_key = None
         self._public_key = None
 
-        self._gate_sequence: typing.List[int] = []
-        self._bit_sequence: typing.List[int] = []
-        self._result_sequence: typing.List[int] = []
+        self._sender_base: typing.List[int] = []
+        self._receiver_base: typing.List[int] = []
+        self._raw_key: typing.List[int] = []
 
     @property
     def public_key(self):
@@ -26,8 +26,9 @@ class Agent(abc.ABC):
     def get_private_key_hash(self) -> str:
         return sha3_512(repr(self._private_key).encode('utf-8')).hexdigest()
 
-    def generate_random_bit_sequence(self, length: int = 8):
-        self._bit_sequence = [RandomGenerator.generate_binary_random_value() for _ in range(length)]
+    def generate_raw_key(self, length: int = 8):
+        self._raw_key = [RandomGenerator.bit_value() for _ in range(length)]
 
-    def generate_random_gate_sequence(self, length: int = 8):
-        self._gate_sequence = [RandomGenerator.generate_binary_random_value() for _ in range(length)]
+    def generate_base(self, length: int = 8):
+        self._sender_base = [RandomGenerator.bit_value() for _ in range(length)]
+        self._receiver_base = [RandomGenerator.bit_value() for _ in range(length)]
