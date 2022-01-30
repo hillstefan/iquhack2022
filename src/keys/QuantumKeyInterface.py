@@ -32,11 +32,13 @@ class QuantumKeyInterface:
         self.agent_2.generate_random_bit_sequence(length=key_length)
         self.agent_2.generate_random_gate_sequence(length=key_length)
 
-        # TODO: hier key exchange quantum inspire sdk einbinden
+        for i in range(key_length):
+            string = '''version 1.0
+            qubits 1'''
+            if m[i] == 1: string += "\nX q[0]"
+            if b1[i] == 1: string += "\nH q[0]"
+            if b2[i] == 1: string += "\nH q[0]"
+            string += '''
+            measure_all'''
 
-        #authentication = BasicAuthentication("email", "password")
-        #QI.set_authentication(authentication, project_name='my-project-name')
-
-        result = CircuitExecutor.execute_qiskit(circuit)
-
-
+        result = CircuitExecutor().execute_qasm(qasm_string, backend='Starmon-5')

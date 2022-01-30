@@ -7,8 +7,6 @@ Created on Sun Jan 30 01:11:05 2022
 import numpy as np
 
 # Authentication
-from getpass import getpass
-from coreapi.auth import BasicAuthentication
 
 from quantuminspire.credentials import save_account
 
@@ -34,14 +32,14 @@ nr_bits = 1
 def random_number_generator(n_bits, n_qb, qb1):
     bitstring = np.zeros(nr_bits)
 
-    qasm = '''version 1.0
+    qasm = f'''version 1.0
 
-    qubits {}
+    qubits {n_qb}
 
-    H q[{}]
+    H q[{qb1}]
 
-    Measure_z q[{}]
-    '''.format(n_qb, qb1, qb1)
+    Measure_z q[{qb1}]
+    '''
 
     for i in range(n_bits):
         # backend_type = qi.get_backend_type_by_name('QX single-node simulator')
