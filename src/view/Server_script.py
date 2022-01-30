@@ -56,6 +56,7 @@ def startChat():
         # of data that can be received (bytes)
         name = conn.recv(1024).decode(FORMAT)
 
+        #key=
         # append the name and client
         # to the respective list
         names.append(name)

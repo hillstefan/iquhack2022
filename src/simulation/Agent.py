@@ -32,3 +32,17 @@ class Agent(abc.ABC):
     def generate_base(self, length: int = 8):
         self._sender_base = [RandomGenerator.bit_value() for _ in range(length)]
         self._receiver_base = [RandomGenerator.bit_value() for _ in range(length)]
+
+    def encrypt(self, message) -> str:
+        elongated_private_key = []
+        message_out = ""
+        #char wise encrypt or decrypt
+        for i in message:
+            while len(elongated_private_key) < 8:
+                for j in self._private_key:
+                    elongated_private_key.append(j)
+            scramble = 0
+            for j in range(8):
+                scramble += elongated_private_key.pop() * 2**j
+            message_out += chr(ord(i) ^ scramble)
+        return message_out
