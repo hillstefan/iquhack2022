@@ -1,5 +1,7 @@
 from keys.Agent import Agent
 
+from keys.CircuitExecutor import CircuitExecutor
+
 
 class QuantumKeyInterface:
 
@@ -30,4 +32,11 @@ class QuantumKeyInterface:
         self.agent_2.generate_random_bit_sequence(length=key_length)
         self.agent_2.generate_random_gate_sequence(length=key_length)
 
-        # TODO: hier key exchange
+        # TODO: hier key exchange quantum inspire sdk einbinden
+
+        #authentication = BasicAuthentication("email", "password")
+        #QI.set_authentication(authentication, project_name='my-project-name')
+
+        result = CircuitExecutor.execute_qiskit(circuit)
+
+
