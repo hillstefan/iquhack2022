@@ -208,7 +208,7 @@ class GUI:
                     self.textCons.see(END)
             except:
                 # an error will be printed on the command line or console if there's an error
-                print("An error occured!")
+                print("An error occurred!")
                 client.close()
                 break
 

@@ -21,6 +21,17 @@ by comparison of two hash-functions.
 The classical communication was implemented in python while the quantum information channels 
 were implemented with cQASM and run on the Quantum inspire platform.
 
+
+The resulting keys can be compared publicly using a quantum-safe hash function such as sha3-512.
+If they match, the key exchange was successful, if they do not match, an error occurred (most likely) in the quantum algorithm, so a re-run is necessary, which our code handles automatically, up to 10 tries.
+
+Once the key hash functions match, a secure connection can be established. We used a symmetric XOR encryption of the message with an elongated key.
+The receiving party can then decrypt the message using the same XOR function.
+
+This procedure can be used in any data transfer application, from email to messenger app, as long as a series of qubits can be exchanged between the communicating parties.
+Our journalist can now transmit the critical insider information safely.
+
+
 ## Our personal experience
 
 We all really enjoyed the event and had a lot of fun coding together and 
